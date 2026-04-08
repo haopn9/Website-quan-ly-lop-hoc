@@ -1,6 +1,3 @@
-/* DATABASE: QuanLyLopHocDB
-    VERSION: 2.0 (Updated based on Functional Hierarchy & Use Case)
-*/
 
 CREATE DATABASE QuanLyLopHocDB;
 GO
@@ -75,7 +72,14 @@ CREATE TABLE Classes (
     SemesterId INT NOT NULL, -- Lớp học phải thuộc về 1 học kỳ
     FOREIGN KEY (TeacherId) REFERENCES Users(UserId),
     FOREIGN KEY (SemesterId) REFERENCES Semesters(SemesterId)
+
+    
 );
+--CẬP NHẬT BẢNG CLASSES (Thêm thông tin thời gian học)
+ALTER TABLE Classes 
+    ADD StartDate DATE NULL,
+    EndDate DATE NULL,
+    StudyTime NVARCHAR(255) NULL; -- Thời gian học (ví dụ: Thứ 2,4,6 18:00-20:00)
 
 CREATE TABLE ClassStudents (
     ClassId INT NOT NULL,
@@ -95,6 +99,13 @@ CREATE TABLE Groups (
     FOREIGN KEY (ClassId) REFERENCES Classes(ClassId),
     FOREIGN KEY (LeaderId) REFERENCES Users(UserId)
 );
+-- 3. CẬP NHẬT BẢNG GROUPS (Liên kết Đề tài vào Nhóm)
+ALTER TABLE Groups 
+ADD TopicId INT NULL; -- Nhóm được giao hoặc đăng ký đề tài nào
+
+ALTER TABLE Groups 
+ADD CONSTRAINT FK_Groups_Topics FOREIGN KEY (TopicId) REFERENCES Topics(TopicId);
+
 
 CREATE TABLE GroupMembers (
     GroupId INT NOT NULL,
@@ -121,6 +132,13 @@ CREATE TABLE Tasks (
     CreatedAt DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (GroupId) REFERENCES Groups(GroupId)
 );
+-- CẬP NHẬT BẢNG TASKS (Liên kết Task vào Đề tài tổng quát)
+ALTER TABLE Tasks
+ADD TopicId INT NULL; -- Đảm bảo task con bám sát đề tài mẹ
+
+ALTER TABLE Tasks
+ADD CONSTRAINT FK_Tasks_Topics FOREIGN KEY (TopicId) REFERENCES Topics(TopicId);
+
 
 -- Bảng phân công nhiệm vụ (Cho phép 1 task giao cho NHIỀU người)
 CREATE TABLE TaskAssignees (
@@ -172,26 +190,14 @@ CREATE TABLE Attachments (
     FOREIGN KEY (TaskId) REFERENCES Tasks(TaskId),
     FOREIGN KEY (UploadedBy) REFERENCES Users(UserId)
 );
+--CẬP NHẬT BẢNG ATTACHMENTS (Hỗ trợ file cho Đề tài)
+ALTER TABLE Attachments
+ADD TopicId INT NULL; -- Tài liệu hướng dẫn của đề tài
 
-/* DATABASE: QuanLyLopHocDB
-    VERSION: 3.0 (Updated based on Teacher's Feedback & Transfer Logic)
-*/
+ALTER TABLE Attachments
+ADD CONSTRAINT FK_Attachments_Topics FOREIGN KEY (TopicId) REFERENCES Topics(TopicId);
 
-USE QuanLyLopHocDB;
-GO
-
--- ==========================================
--- 1. CẬP NHẬT BẢNG CLASSES (Thêm thông tin thời gian học)
--- ==========================================
-ALTER TABLE Classes 
-ADD StartDate DATE NULL,
-    EndDate DATE NULL,
-    StudyTime NVARCHAR(255) NULL; -- Ví dụ: Thứ 2, Tiết 1-3, Phòng A101
-GO
-
--- ==========================================
--- 2. BẢNG TOPICS (Quản lý Đề tài/Chủ đề môn học) - MỚI
--- ==========================================
+-- BẢNG TOPICS (Quản lý Đề tài/Chủ đề môn học)
 CREATE TABLE Topics (
     TopicId INT IDENTITY(1,1) PRIMARY KEY,
     Title NVARCHAR(255) NOT NULL,
@@ -203,21 +209,8 @@ CREATE TABLE Topics (
     CreatedAt DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (ClassId) REFERENCES Classes(ClassId)
 );
-GO
 
--- ==========================================
--- 3. CẬP NHẬT BẢNG GROUPS (Liên kết Đề tài vào Nhóm)
--- ==========================================
-ALTER TABLE Groups 
-ADD TopicId INT NULL; -- Nhóm được giao hoặc đăng ký đề tài nào
-
-ALTER TABLE Groups 
-ADD CONSTRAINT FK_Groups_Topics FOREIGN KEY (TopicId) REFERENCES Topics(TopicId);
-GO
-
--- ==========================================
--- 4. BẢNG TRANSFER_REQUESTS (Yêu cầu chuyển nhóm) - MỚI
--- ==========================================
+-- BẢNG TRANSFER_REQUESTS (Yêu cầu chuyển nhóm)
 CREATE TABLE TransferRequests (
     RequestId INT IDENTITY(1,1) PRIMARY KEY,
     StudentId INT NOT NULL,
@@ -232,27 +225,6 @@ CREATE TABLE TransferRequests (
     FOREIGN KEY (FromGroupId) REFERENCES Groups(GroupId),
     FOREIGN KEY (ToGroupId) REFERENCES Groups(GroupId)
 );
-GO
-
--- ==========================================
--- 5. CẬP NHẬT BẢNG TASKS (Liên kết Task vào Đề tài tổng quát)
--- ==========================================
-ALTER TABLE Tasks
-ADD TopicId INT NULL; -- Đảm bảo task con bám sát đề tài mẹ
-
-ALTER TABLE Tasks
-ADD CONSTRAINT FK_Tasks_Topics FOREIGN KEY (TopicId) REFERENCES Topics(TopicId);
-GO
-
--- ==========================================
--- 6. CẬP NHẬT BẢNG ATTACHMENTS (Hỗ trợ file cho Đề tài)
--- ==========================================
-ALTER TABLE Attachments
-ADD TopicId INT NULL; -- Tài liệu hướng dẫn của đề tài
-
-ALTER TABLE Attachments
-ADD CONSTRAINT FK_Attachments_Topics FOREIGN KEY (TopicId) REFERENCES Topics(TopicId);
-GO
 GO
 
 -- ==========================================
