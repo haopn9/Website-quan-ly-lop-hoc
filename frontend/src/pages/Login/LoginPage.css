@@ -1,0 +1,135 @@
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #f0f2ff;
+  overflow: hidden;
+  position: relative; /* Để làm gốc tọa độ cho ảnh laptop */
+}
+
+/* --- PHẦN BÊN TRÁI --- */
+.login-left {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.login-form-wrapper {
+  width: 100%;
+  max-width: 420px; 
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  width: 100%; /* Đảm bảo group chiếm hết chiều rộng wrapper */
+}
+
+
+.input-group label {
+  display: block;
+  text-align: left; 
+  font-weight: 500;
+  margin-bottom: 10px;
+  padding-left: 10px; 
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  box-sizing: border-box; 
+  padding: 14px 25px;
+  border: 2px solid #c5cae9;
+  border-radius: 30px;
+  outline: none;
+  font-size: 16px;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-top: 8px;
+}
+
+.forgot-password a {
+  font-size: 14px;
+  color: #7b89dd;
+  text-decoration: none;
+}
+
+
+.login-button {
+  width: 100%; 
+  box-sizing: border-box;
+  padding: 16px;
+  background-color: #7b89dd;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(123, 137, 221, 0.4);
+}
+
+/* --- PHẦN BÊN PHẢI --- */
+.login-right {
+  flex: 0.8;
+  background-color: #b2b9ff;
+  position: relative; 
+}
+
+
+.illustration-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0; 
+  transform: translate(-50%, -50%); 
+  width: 80%; 
+  z-index: 10;
+}
+
+.laptop-img {
+  width: 100%;
+  display: block;
+}
+
+.decoration-blob {
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 200px;
+  height: 200px;
+  background-color: #9da5ff;
+  border-radius: 70px;
+  transform: rotate(45deg);
+}
+
+/* Container bọc input mật khẩu để chứa icon */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-wrapper input {
+  padding-right: 50px !important; /* Chừa chỗ cho con mắt ở bên phải */
+}
+
+/* Style cho icon con mắt */
+.password-toggle {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+
+.password-toggle:hover {
+  transform: scale(1.2); /* Phóng to nhẹ khi di chuột vào */
+}
