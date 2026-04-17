@@ -36,6 +36,7 @@
   margin-bottom: 10px;
   padding-left: 10px; 
   color: #333;
+  font-size: 20px;
 }
 
 .input-group input {
@@ -45,7 +46,7 @@
   border: 2px solid #c5cae9;
   border-radius: 30px;
   outline: none;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .forgot-password {
@@ -132,4 +133,132 @@
 
 .password-toggle:hover {
   transform: scale(1.2); /* Phóng to nhẹ khi di chuột vào */
+}
+/* --- CÁC TÍNH NĂNG MỚI THÊM --- */
+
+/* Lỗi đỏ dưới placeholder */
+.error-text {
+  display: block;
+  color: #ef4444; /* Màu đỏ */
+  font-size: 16px;
+  margin-top: 5px;
+  padding-left: 10px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Nút Quay lại */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: #0081ff; /* Đổi màu xanh khi hover */
+}
+
+.back-icon {
+  font-size: 12px;
+}
+
+/* Nút Quên mật khẩu dạng Text */
+.forgot-link {
+  font-size: 16px;
+  color: #7b89dd;
+  cursor: pointer;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* Style cho nút Đăng nhập khi bị vô hiệu hóa */
+.btn-disabled {
+  background-color: #cbd5e1 !important; /* Đổi sang màu xám */
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+
+/* =========================================
+   MODAL QUÊN MẬT KHẨU STYLES
+========================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+.modal-forgot {
+  max-width: 400px; /* Độ rộng vừa phải cho modal quên mật khẩu */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 18px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #64748b;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #ef4444; /* Chuyển màu đỏ khi hover vào dấu X */
+}
+
+.modal-body {
+  padding: 30px 20px;
+  text-align: center;
+  color: #64748b;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

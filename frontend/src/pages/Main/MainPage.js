@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Thêm useNavigate
 import './MainPage.css';
-// Bạn hãy export ảnh giao diện app từ Figma và để vào assets
 import appShowcase from '../../assets/app-showcase.png'; 
 
 const MainPage = () => {
+  const navigate = useNavigate(); // Khởi tạo hàm chuyển trang
+
   return (
     <div className="main-container">
       {/* NAVBAR */}
@@ -14,7 +15,6 @@ const MainPage = () => {
           <li>Trang chủ</li>
           <li>Giải pháp</li>
           <li>Giới thiệu</li>
-          <li>Hỏi đáp</li>
         </ul>
         {/* Nối kết sang trang Login */}
         <Link to="/login" className="btn-login-nav">Đăng nhập</Link>
@@ -24,9 +24,13 @@ const MainPage = () => {
       <header className="hero-section">
         <div className="hero-content">
           <span className="badge">Hãy làm việc hiệu quả hơn</span>
-          <h1>Quản lý nhóm của bạn dễ dàng cùng Nhóm 2</h1>
-          <p>Nền tảng tốt nhất để quản lý dự án và đội ngũ của bạn tại một nơi duy nhất, dễ dàng và nhanh chóng.</p>
-          <button className="btn-get-started">Bắt đầu ngay</button>
+          <h1>Quản lý lớp học & nhóm của bạn dễ dàng cùng Nhóm 2</h1>
+          <p>Nền tảng tốt nhất để quản lý lớp học và nhóm của bạn tại một nơi duy nhất, dễ dàng và nhanh chóng.</p>
+          
+          {/* Nút Bắt đầu ngay đã được gắn link */}
+          <button className="btn-get-started" onClick={() => navigate('/login')}>
+            Bắt đầu ngay
+          </button>
         </div>
         
         {/* Hình ảnh minh họa giao diện App */}
@@ -42,24 +46,19 @@ const MainPage = () => {
             <h3>Công ty</h3>
             <ul>
               <li>Giới thiệu</li>
-              <li>Tuyển dụng</li>
-              <li>Báo chí</li>
             </ul>
           </div>
           <div className="footer-col">
             <h3>Sản phẩm</h3>
             <ul>
               <li>Tính năng</li>
-              
               <li>Bảo mật</li>
             </ul>
           </div>
           <div className="footer-col">
             <h3>Tài nguyên</h3>
             <ul>
-              <li>Blog</li>
               <li>Hướng dẫn</li>
-              <li>Trung tâm trợ giúp</li>
             </ul>
           </div>
         </div>
