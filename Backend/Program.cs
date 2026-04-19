@@ -6,7 +6,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ===== DATABASE =====
+// ===== DATABASE ===== 
 builder.Services.AddDbContext<QuanLyLopHocDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -14,6 +14,10 @@ builder.Services.AddDbContext<QuanLyLopHocDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// ===== CORS ===== 
+builder.Services.AddCors(o => o.AddPolicy("AllowReact", p =>
+    p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
 // ===== AUTHENTICATION =====
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -23,27 +27,23 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value!)),
+                .GetBytes(builder.Configuration["AppSettings:Token"]!)),
             ValidateIssuer = false,
             ValidateAudience = false
         };
     });
 
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 // ===== SWAGGER =====
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseRouting();
 app.UseCors("AllowReact");
-
 app.UseAuthentication();
-
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();
