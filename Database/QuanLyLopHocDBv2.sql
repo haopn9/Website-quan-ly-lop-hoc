@@ -62,6 +62,7 @@ CREATE TABLE NguoiDung (
     GioiTinh      BIT           NULL,                         -- Giới tính: 1 = Nam, 0 = Nữ
     SoDienThoai   VARCHAR(20)   NULL,                         -- Số điện thoại liên lạc
     Email         VARCHAR(100)  UNIQUE NULL,                  -- Email (dùng để nhận thông báo, đăng nhập)
+    DiaChi        NVARCHAR(255) NULL,                         -- Địa chỉ nơi ở hiện tại
     AnhDaiDien    NVARCHAR(MAX) NULL,                         -- Đường dẫn ảnh đại diện (URL hoặc path)
     MaKhoa        INT           NULL,                         -- Khoa mà người dùng thuộc về (FK)
     MaVaiTro      INT           NOT NULL,                     -- Vai trò của người dùng (FK)
@@ -173,7 +174,7 @@ CREATE TABLE NhiemVu (
     NgayBatDau       DATETIME      NULL,                      -- Ngày bắt đầu thực hiện
     HanHoanThanh     DATETIME      NULL,                      -- Deadline hoàn thành
     MucDoUuTien      NVARCHAR(50)  NULL,                      -- Mức ưu tiên: Cao / Trung bình / Thấp
-    TrangThai        NVARCHAR(50)  DEFAULT N'Chưa bắt đầu',  -- Trạng thái: Chưa bắt đầu / Đang thực hiện / Đã hoàn thành / Trễ hạn
+    TrangThai        NVARCHAR(50)  DEFAULT N'Chưa bắt đầu',   -- Trạng thái: Chưa bắt đầu / Đang thực hiện /Chờ duyệt/ Đã hoàn thành /Làm lại task/ Trễ hạn
     PhanTramHoanThanh INT          DEFAULT 0,                 -- Tiến độ hoàn thành (0 - 100%)
     NgayTao          DATETIME      DEFAULT GETDATE(),         -- Thời điểm tạo nhiệm vụ
     FOREIGN KEY (MaNhom)  REFERENCES Nhom(MaNhom),
