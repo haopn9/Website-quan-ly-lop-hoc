@@ -13,6 +13,15 @@ import TeacherLayout from './pages/Teacher/TeacherLayout';
 // Import Profile 
 import UserProfile from './pages/Profiles/UserProfile';
 
+// Import Student Pages
+import StudentDashboard from './pages/Student/StudentDashboard'; // trang chính
+import StudentClasses from './pages/Student/StudentClasses'; // trang lớp học
+import StudentClassDetail from './pages/Student/StudentClassDetail'; // trang chi tiết lớp học
+import StudentGroups from './pages/Student/StudentGroups'; // trang nhóm học tập
+import StudentTasks from './pages/Student/StudentTasks'; // trang nhiệm vụ & tiến độ
+import StudentChat from './pages/Student/StudentChat'; // trang không gian thảo luận
+import StudentManageGroup from './pages/Student/StudentManageGroup'; // trang điều phối nhóm
+
 
 function App() {
   return (
@@ -22,8 +31,15 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         
         {/* Tuyến đường Sinh viên */}
-        <Route path="/student" element={<StudentLayout />}>
+        <Route path="/student" element={<StudentLayout/>}>
           <Route path="profile" element={<UserProfile role="student" />} />
+         <Route path="dashboard"    element={<StudentDashboard />} /> 
+          <Route path="classes"    element={<StudentClasses />} />
+           <Route path="classes/:maLop" element={<StudentClassDetail />} />
+          <Route path="groups"    element={<StudentGroups />} />
+          <Route path="tasks"    element={<StudentTasks />} />
+          <Route path="chat"    element={<StudentChat />} />
+          <Route path="manage-group"    element={<StudentManageGroup />} />
           {/* Các trang khác của SV... */}
         </Route>
 
