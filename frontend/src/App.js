@@ -13,6 +13,12 @@ import TeacherLayout from './pages/Teacher/TeacherLayout';
 // Import Profile 
 import UserProfile from './pages/Profiles/UserProfile';
 
+// Import các trang quản lý của ADMIN
+import Dashboard from './pages/Admin/Dashboard';
+import UserManagement from './pages/Admin/UserManagement';
+import ClassManagement from './pages/Admin/ClassManagement';
+import GroupManagement from './pages/Admin/GroupManagement';
+
 
 function App() {
   return (
@@ -27,11 +33,14 @@ function App() {
           {/* Các trang khác của SV... */}
         </Route>
 
-        {/* Tuyến đường Admin */}
+           {/* Tuyến đường Admin */}
         <Route path="/admin" element={<AdminLayout />}>
-          {/* Gọi lại Profile ở đây */}
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="users" element={<UserManagement />} />
+          <Route path="classes" element={<ClassManagement />} />
+          <Route path="groups" element={<GroupManagement />} />
           <Route path="profile" element={<UserProfile role="admin" />} />
-          {/* Các trang khác của Admin... */}
         </Route>
 
         {/* Tuyến đường Giảng viên */}

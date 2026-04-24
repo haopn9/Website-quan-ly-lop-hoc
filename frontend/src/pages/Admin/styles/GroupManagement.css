@@ -1,0 +1,288 @@
+/* GroupManagement.css - Quản lý nhóm học tập */
+
+/* Groups Grid */
+.groups-grid-modern {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 24px;
+}
+
+/* Group Card */
+.group-card-modern {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #eef2f6;
+  overflow: hidden;
+}
+
+.group-card-modern:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.group-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 20px 12px;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border-bottom: 1px solid #eef2f6;
+}
+
+.group-title h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.group-class {
+  display: inline-block;
+  font-size: 12px;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.group-card-body {
+  padding: 16px 20px;
+}
+
+.group-info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.group-stats-modern {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.group-stats-modern .stat-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748b;
+  background: #f8fafc;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.group-stats-modern .stat-icon {
+  font-size: 12px;
+  color: #3498db;
+}
+
+.progress-label {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.progress-bar-modern {
+  background: #e2e8f0;
+  border-radius: 10px;
+  height: 28px;
+  overflow: hidden;
+}
+
+.progress-fill-modern {
+  background: linear-gradient(90deg, #3498db, #5dade2);
+  border-radius: 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.group-card-footer {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #eef2f6;
+  flex-wrap: wrap;
+}
+
+.action-btn.view {
+  background: #e0e7ff;
+  color: #4f46e5;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.action-btn.view:hover {
+  background: #c7d2fe;
+  transform: scale(1.02);
+}
+
+/* Modal large cho chi tiết nhóm */
+.modal-container.large {
+  width: 700px;
+  max-width: 90%;
+}
+
+/* Progress bar small */
+.progress-bar-small {
+  width: 100px;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill-small {
+  height: 100%;
+  background: #3498db;
+  border-radius: 3px;
+}
+
+/* Data table small */
+.data-table-modern.small {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table-modern.small th,
+.data-table-modern.small td {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 13px;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.data-table-modern.small th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* Info grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.info-item {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.info-item label {
+  font-weight: 500;
+  color: #64748b;
+  min-width: 80px;
+}
+
+.info-item span {
+  color: #1e293b;
+}
+
+/* Tasks list */
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.task-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.task-icon {
+  font-size: 18px;
+}
+
+.task-icon.done {
+  color: #10b981;
+}
+
+.task-icon.pending {
+  color: #f59e0b;
+}
+
+.task-status {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.task-status.completed {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.task-status.inprogress {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.task-status.pending {
+  background: #fed7aa;
+  color: #ea580c;
+}
+
+/* Activities list */
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.activity-item svg {
+  color: #3498db;
+  flex-shrink: 0;
+}
+
+.activity-item span {
+  flex: 1;
+  color: #475569;
+}
+
+.activity-item small {
+  font-size: 11px;
+  color: #94a3b8;
+}
