@@ -13,6 +13,7 @@ import TeacherLayout from './pages/Teacher/TeacherLayout';
 // Import Profile 
 import UserProfile from './pages/Profiles/UserProfile';
 
+<<<<<<< HEAD
 // Import Student Pages
 import StudentDashboard from './pages/Student/StudentDashboard'; // trang chính
 import StudentClasses from './pages/Student/StudentClasses'; // trang lớp học
@@ -21,6 +22,14 @@ import StudentGroups from './pages/Student/StudentGroups'; // trang nhóm học 
 import StudentTasks from './pages/Student/StudentTasks'; // trang nhiệm vụ & tiến độ
 import StudentChat from './pages/Student/StudentChat'; // trang không gian thảo luận
 import StudentManageGroup from './pages/Student/StudentManageGroup'; // trang điều phối nhóm
+=======
+// Import các trang quản lý của ADMIN
+import Dashboard from './pages/Admin/Dashboard';
+import UserManagement from './pages/Admin/UserManagement';
+import ClassManagement from './pages/Admin/ClassManagement';
+import GroupManagement from './pages/Admin/GroupManagement';
+import MessageManagement from './pages/Admin/MessageManagement';
+>>>>>>> 5a25985dc1cfc1683f41ac293fc40d6e7a445885
 
 
 function App() {
@@ -43,11 +52,15 @@ function App() {
           {/* Các trang khác của SV... */}
         </Route>
 
-        {/* Tuyến đường Admin */}
+           {/* Tuyến đường Admin */}
         <Route path="/admin" element={<AdminLayout />}>
-          {/* Gọi lại Profile ở đây */}
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="users" element={<UserManagement />} />
+          <Route path="classes" element={<ClassManagement />} />
+          <Route path="groups" element={<GroupManagement />} />
+          <Route path="messages" element={<MessageManagement />} /> 
           <Route path="profile" element={<UserProfile role="admin" />} />
-          {/* Các trang khác của Admin... */}
         </Route>
 
         {/* Tuyến đường Giảng viên */}
