@@ -1,14 +1,17 @@
+// AdminLayout.js - Thay FaRegMessage bằng FaMessage
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { FaTachometerAlt, FaUsers, FaBookOpen, FaUsersCog, FaSignOutAlt, FaUserEdit } from 'react-icons/fa';
-import './styles/AdminLayout.css';  // Import từ thư mục styles
+import { 
+  FaTachometerAlt, FaUsers, FaBookOpen, FaUsersCog, 
+  FaSignOutAlt, FaUserEdit, FaEnvelope 
+} from 'react-icons/fa';
+import './styles/AdminLayout.css';
 
 const AdminLayout = () => {
   const location = useLocation();
 
   return (
     <div className="admin-layout">
-      {/* Sidebar */}
       <aside className="admin-sidebar">
         <div className="sidebar-profile">
           <div className="avatar-circle">
@@ -20,7 +23,6 @@ const AdminLayout = () => {
         </div>
 
         <ul className="sidebar-menu">
-          {/* QUẢN TRỊ HỆ THỐNG */}
           <li className="menu-section">QUẢN TRỊ HỆ THỐNG</li>
           <li>
             <Link to="/admin/dashboard" className={`menu-item ${location.pathname === '/admin/dashboard' || location.pathname === '/admin' ? 'active' : ''}`}>
@@ -42,8 +44,12 @@ const AdminLayout = () => {
               <FaUsersCog /> <span>Quản lý nhóm</span>
             </Link>
           </li>
+          <li>
+            <Link to="/admin/messages" className={`menu-item ${location.pathname === '/admin/messages' ? 'active' : ''}`}>
+              <FaEnvelope /> <span>Quản lý tin nhắn</span>
+            </Link>
+          </li>
 
-          {/* CÁ NHÂN */}
           <li className="menu-section">CÁ NHÂN</li>
           <li>
             <Link to="/admin/profile" className="menu-item">
@@ -58,7 +64,6 @@ const AdminLayout = () => {
         </ul>
       </aside>
 
-      {/* Nội dung chính */}
       <main className="admin-main">
         <Outlet />
       </main>

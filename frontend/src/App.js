@@ -18,6 +18,7 @@ import Dashboard from './pages/Admin/Dashboard';
 import UserManagement from './pages/Admin/UserManagement';
 import ClassManagement from './pages/Admin/ClassManagement';
 import GroupManagement from './pages/Admin/GroupManagement';
+import MessageManagement from './pages/Admin/MessageManagement';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="users" element={<UserManagement />} />
           <Route path="classes" element={<ClassManagement />} />
           <Route path="groups" element={<GroupManagement />} />
+          <Route path="messages" element={<MessageManagement />} /> 
           <Route path="profile" element={<UserProfile role="admin" />} />
         </Route>
 

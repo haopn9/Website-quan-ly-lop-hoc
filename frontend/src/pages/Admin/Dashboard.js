@@ -1,4 +1,5 @@
-import React from 'react';
+// Dashboard.js
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   FaUsers, FaChalkboardTeacher, FaUserGraduate, FaBookOpen, 
@@ -7,27 +8,57 @@ import {
 import './styles/Dashboard.css';
 
 const Dashboard = () => {
-  const stats = {
-    totalUsers: 156,
-    totalTeachers: 12,
-    totalStudents: 140,
-    totalClasses: 8,
-    totalGroups: 24,
-    activeGroups: 20,
-    pendingTasks: 45,
-    overdueTasks: 8,
-    totalMessages: 1240,
-  };
+  // State cho dữ liệu từ database
+  const [stats, setStats] = useState({
+    totalUsers: 0,
+    totalTeachers: 0,
+    totalStudents: 0,
+    totalClasses: 0,
+    totalGroups: 0,
+    activeGroups: 0,
+    pendingTasks: 0,
+    overdueTasks: 0,
+    totalMessages: 0,
+  });
 
-  const recentClasses = [
-    { id: 1, name: 'Lập trình Web', code: 'WEB101', teacher: 'Trần Thị B', students: 45, groups: 9, status: 'active' },
-    { id: 2, name: 'Cơ sở dữ liệu', code: 'CSDL202', teacher: 'Lê Văn C', students: 38, groups: 8, status: 'active' },
-    { id: 3, name: 'Lập trình Java', code: 'JAVA303', teacher: 'Trần Thị B', students: 42, groups: 9, status: 'active' },
-  ];
+  const [recentClasses, setRecentClasses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Giả lập dữ liệu từ database (sẽ thay bằng API call)
+  useEffect(() => {
+    // TODO: Gọi API từ backend
+    // fetch('/api/admin/dashboard-stats')
+    //   .then(res => res.json())
+    //   .then(data => setStats(data))
+    
+    // Dữ liệu mẫu từ database
+    setStats({
+      totalUsers: 120,      // Tổng từ bảng NguoiDung
+      totalTeachers: 3,     // Đếm từ bảng NguoiDung WHERE MaVaiTro = 2
+      totalStudents: 100,   // Đếm từ bảng NguoiDung WHERE MaVaiTro = 3
+      totalClasses: 3,      // Đếm từ bảng LopHoc
+      totalGroups: 9,       // Đếm từ bảng Nhom
+      activeGroups: 9,      // Đếm nhóm có sinh viên
+      pendingTasks: 15,     // Đếm từ bảng NhiemVu WHERE TrangThai = 'Đang thực hiện'
+      overdueTasks: 3,      // Đếm task quá hạn
+      totalMessages: 1240,  // Đếm từ bảng TinNhan
+    });
+
+    setRecentClasses([
+      { id: 1, name: 'Lập trình Web', code: 'LT_WEB_01', teacher: 'Nguyễn Văn A', students: 45, groups: 9, status: 'active' },
+      { id: 2, name: 'Cơ sở dữ liệu', code: 'CSDL_01', teacher: 'Trần Thị B', students: 38, groups: 8, status: 'active' },
+      { id: 3, name: 'Lập trình Java', code: 'JAVA_01', teacher: 'Lê Hồng C', students: 42, groups: 9, status: 'active' },
+    ]);
+    
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return <div className="loading-state">Đang tải dữ liệu...</div>;
+  }
 
   return (
     <div className="dashboard-container">
-      {/* Header với gradient */}
       <div className="page-header-modern">
         <div className="header-content">
           <h2>Tổng quan hệ thống</h2>
@@ -35,14 +66,14 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Thống kê */}
+      {/* Thống kê từ database */}
       <div className="stats-grid">
         <div className="stat-card">
           <div className="stat-icon blue"><FaUsers /></div>
           <div className="stat-info">
             <h3>Tổng người dùng</h3>
             <p className="stat-number">{stats.totalUsers}</p>
-            <span className="stat-change positive"><FaArrowUp /> 12%</span>
+            <span className="stat-change positive"><FaArrowUp /> từ bảng NguoiDung</span>
           </div>
         </div>
         <div className="stat-card">
@@ -50,6 +81,7 @@ const Dashboard = () => {
           <div className="stat-info">
             <h3>Giảng viên</h3>
             <p className="stat-number">{stats.totalTeachers}</p>
+            <span className="stat-change">MaVaiTro = 2</span>
           </div>
         </div>
         <div className="stat-card">
@@ -57,6 +89,7 @@ const Dashboard = () => {
           <div className="stat-info">
             <h3>Sinh viên</h3>
             <p className="stat-number">{stats.totalStudents}</p>
+            <span className="stat-change">MaVaiTro = 3</span>
           </div>
         </div>
         <div className="stat-card">
@@ -64,6 +97,7 @@ const Dashboard = () => {
           <div className="stat-info">
             <h3>Lớp học</h3>
             <p className="stat-number">{stats.totalClasses}</p>
+            <span className="stat-change">từ bảng LopHoc</span>
           </div>
         </div>
       </div>
@@ -74,7 +108,7 @@ const Dashboard = () => {
           <div className="stat-info">
             <h3>Nhóm học tập</h3>
             <p className="stat-number">{stats.totalGroups}</p>
-            <span className="stat-change">{stats.activeGroups} nhóm hoạt động</span>
+            <span className="stat-change">{stats.activeGroups} nhóm từ bảng Nhom</span>
           </div>
         </div>
         <div className="stat-card">
@@ -82,7 +116,7 @@ const Dashboard = () => {
           <div className="stat-info">
             <h3>Công việc</h3>
             <p className="stat-number">{stats.pendingTasks}</p>
-            <span className="stat-change negative">{stats.overdueTasks} trễ hạn</span>
+            <span className="stat-change negative">{stats.overdueTasks} trễ hạn từ bảng NhiemVu</span>
           </div>
         </div>
         <div className="stat-card">
@@ -90,11 +124,12 @@ const Dashboard = () => {
           <div className="stat-info">
             <h3>Tin nhắn</h3>
             <p className="stat-number">{stats.totalMessages.toLocaleString()}</p>
+            <span className="stat-change">từ bảng TinNhan</span>
           </div>
         </div>
       </div>
 
-      {/* Danh sách lớp học dạng card */}
+      {/* Danh sách lớp học từ bảng LopHoc */}
       <div className="classes-grid-modern">
         {recentClasses.map(classItem => (
           <div key={classItem.id} className="class-card-modern">
@@ -104,7 +139,7 @@ const Dashboard = () => {
                 <span className="class-code">{classItem.code}</span>
               </div>
               <span className="status-badge-modern active">
-                Đang hoạt động
+                {classItem.status === 'active' ? 'Đang hoạt động' : 'Kết thúc'}
               </span>
             </div>
             
@@ -134,7 +169,6 @@ const Dashboard = () => {
         ))}
       </div>
       
-      {/* Nút xem tất cả */}
       <div className="view-all-container">
         <Link to="/admin/classes" className="btn-view-all">
           Xem tất cả lớp học
