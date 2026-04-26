@@ -9,7 +9,7 @@
 CREATE DATABASE QuanLyLopHocDBv2;
 GO
 
-USE QuanLyLopHocDB;
+USE QuanLyLopHocDBv2;
 GO
 
 -- ============================================================

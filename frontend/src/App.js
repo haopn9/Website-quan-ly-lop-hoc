@@ -13,6 +13,9 @@ import TeacherLayout from './pages/Teacher/TeacherLayout';
 // Import Profile 
 import UserProfile from './pages/Profiles/UserProfile';
 
+// Import trang giảng viên
+import ManageClasses from './pages/Teacher/ManageClasses/ManageClasses';
+
 // Import các trang quản lý của ADMIN
 import Dashboard from './pages/Admin/Dashboard';
 import UserManagement from './pages/Admin/UserManagement';
@@ -49,6 +52,7 @@ function App() {
         <Route path="/teacher" element={<TeacherLayout />}>
            {/* Gọi  Profile ở đây */}
           <Route path="profile" element={<UserProfile role="teacher" />} />
+          <Route path="manage-classes" element={<ManageClasses />} />
           {/* Các trang khác của GV... */}
         </Route>
 
