@@ -29,7 +29,7 @@ const StudentLayout = () => {
             </Link>
           </li>
           <li>
-            <Link to="/student/settings" className="menu-item">
+            <Link to="/student/profile" className="menu-item">
               <FaUserEdit className="menu-icon" /> <span>Hồ sơ cá nhân</span>
             </Link>
           </li>

@@ -13,8 +13,14 @@ import TeacherLayout from './pages/Teacher/TeacherLayout';
 // Import Profile 
 import UserProfile from './pages/Profiles/UserProfile';
 
-// Import trang giảng viên
-import ManageClasses from './pages/Teacher/ManageClasses/ManageClasses';
+// Import Student Pages
+import StudentDashboard from './pages/Student/StudentDashboard'; // trang chính
+import StudentClasses from './pages/Student/StudentClasses'; // trang lớp học
+import StudentClassDetail from './pages/Student/StudentClassDetail'; // trang chi tiết lớp học
+import StudentGroups from './pages/Student/StudentGroups'; // trang nhóm học tập
+import StudentTasks from './pages/Student/StudentTasks'; // trang nhiệm vụ & tiến độ
+import StudentChat from './pages/Student/StudentChat'; // trang không gian thảo luận
+import StudentManageGroup from './pages/Student/StudentManageGroup'; // trang điều phối nhóm
 
 // Import các trang quản lý của ADMIN
 import Dashboard from './pages/Admin/Dashboard';
@@ -22,6 +28,9 @@ import UserManagement from './pages/Admin/UserManagement';
 import ClassManagement from './pages/Admin/ClassManagement';
 import GroupManagement from './pages/Admin/GroupManagement';
 import MessageManagement from './pages/Admin/MessageManagement';
+
+// Import trang giảng viên
+import ManageClasses from './pages/Teacher/ManageClasses/ManageClasses';
 
 
 function App() {
@@ -32,8 +41,15 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         
         {/* Tuyến đường Sinh viên */}
-        <Route path="/student" element={<StudentLayout />}>
+        <Route path="/student" element={<StudentLayout/>}>
           <Route path="profile" element={<UserProfile role="student" />} />
+         <Route path="dashboard"    element={<StudentDashboard />} /> 
+          <Route path="classes"    element={<StudentClasses />} />
+           <Route path="classes/:maLop" element={<StudentClassDetail />} />
+          <Route path="groups"    element={<StudentGroups />} />
+          <Route path="tasks"    element={<StudentTasks />} />
+          <Route path="chat"    element={<StudentChat />} />
+          <Route path="manage-group"    element={<StudentManageGroup />} />
           {/* Các trang khác của SV... */}
         </Route>
 
