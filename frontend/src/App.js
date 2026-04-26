@@ -13,7 +13,6 @@ import TeacherLayout from './pages/Teacher/TeacherLayout';
 // Import Profile 
 import UserProfile from './pages/Profiles/UserProfile';
 
-<<<<<<< HEAD
 // Import Student Pages
 import StudentDashboard from './pages/Student/StudentDashboard'; // trang chính
 import StudentClasses from './pages/Student/StudentClasses'; // trang lớp học
@@ -22,14 +21,16 @@ import StudentGroups from './pages/Student/StudentGroups'; // trang nhóm học 
 import StudentTasks from './pages/Student/StudentTasks'; // trang nhiệm vụ & tiến độ
 import StudentChat from './pages/Student/StudentChat'; // trang không gian thảo luận
 import StudentManageGroup from './pages/Student/StudentManageGroup'; // trang điều phối nhóm
-=======
+
 // Import các trang quản lý của ADMIN
 import Dashboard from './pages/Admin/Dashboard';
 import UserManagement from './pages/Admin/UserManagement';
 import ClassManagement from './pages/Admin/ClassManagement';
 import GroupManagement from './pages/Admin/GroupManagement';
 import MessageManagement from './pages/Admin/MessageManagement';
->>>>>>> 5a25985dc1cfc1683f41ac293fc40d6e7a445885
+
+// Import trang giảng viên
+import ManageClasses from './pages/Teacher/ManageClasses/ManageClasses';
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
         <Route path="/teacher" element={<TeacherLayout />}>
            {/* Gọi  Profile ở đây */}
           <Route path="profile" element={<UserProfile role="teacher" />} />
+          <Route path="manage-classes" element={<ManageClasses />} />
           {/* Các trang khác của GV... */}
         </Route>
 
