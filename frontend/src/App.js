@@ -31,6 +31,7 @@ import MessageManagement from './pages/Admin/MessageManagement';
 
 // Import Teacher Pages
 import ManageClasses from './pages/Teacher/ManageClasses/ManageClasses';
+import ManageTopics from './pages/Teacher/ManageTopics/ManageTopics';
 import ManageGroups from './pages/Teacher/ManageGroups/ManageGroups';
 
 
@@ -70,6 +71,7 @@ function App() {
            {/* Gọi  Profile ở đây */}
           <Route path="profile" element={<UserProfile role="teacher" />} />
           <Route path="manage-classes" element={<ManageClasses />} />
+          <Route path="manage-topics" element={<ManageTopics />} />
           <Route path="manage-groups" element={<ManageGroups />} />
         </Route>
 
