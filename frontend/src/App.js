@@ -29,8 +29,9 @@ import ClassManagement from './pages/Admin/ClassManagement';
 import GroupManagement from './pages/Admin/GroupManagement';
 import MessageManagement from './pages/Admin/MessageManagement';
 
-// Import trang giảng viên
+// Import Teacher Pages
 import ManageClasses from './pages/Teacher/ManageClasses/ManageClasses';
+import ManageGroups from './pages/Teacher/ManageGroups/ManageGroups';
 
 
 function App() {
@@ -69,7 +70,7 @@ function App() {
            {/* Gọi  Profile ở đây */}
           <Route path="profile" element={<UserProfile role="teacher" />} />
           <Route path="manage-classes" element={<ManageClasses />} />
-          {/* Các trang khác của GV... */}
+          <Route path="manage-groups" element={<ManageGroups />} />
         </Route>
 
       </Routes>
